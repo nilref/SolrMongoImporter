@@ -7,27 +7,30 @@
     <artifactId>SolrMongoImporter</artifactId>
     <name>MongoDB Data Importer for Solr</name>
     <version>0.1</version>
-    <url>https://github.com/jabong/SolrMongoImporter</url>
+    <url>https://github.com/jbonch/SolrMongoImporter</url>
+    <properties>
+        <solr.version>5.5.0</solr.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
-            <version>3.0.2</version>
+            <version>3.2.2</version>
         </dependency>
         <dependency>
             <groupId>org.apache.solr</groupId>
             <artifactId>solr-dataimporthandler</artifactId>
-            <version>5.1.0</version>
+            <version>${solr.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.solr</groupId>
             <artifactId>solr-core</artifactId>
-            <version>5.1.0</version>
+            <version>${solr.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.solr</groupId>
             <artifactId>solr-dataimporthandler-extras</artifactId>
-            <version>5.1.0</version>
+            <version>${solr.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -54,7 +57,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <finalName>solr-mongo-importer-${version}</finalName>
+                    <finalName>solr-mongo-importer-${project.version}</finalName>
                     <version>3.3.4</version>
                     <includes>
                         <include>org/**</include>
