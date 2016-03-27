@@ -169,7 +169,7 @@ public class MongoDataSource extends DataSource<Iterator<Map<String, Object>>> {
 
 			Set<String> keys;
 
-			if(mapMongoFields == "true"){
+			if("true".equals(mapMongoFields)){
 				keys = getDocumentKeys(document, null);
 			}else{
 				keys = document.keySet();
