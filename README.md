@@ -6,6 +6,7 @@ Welcome to the Solr MongoDB Importer project. This project provides MongoDB supp
 * Authenticate using MongoDB authentication
 * Map Mongo fields to Solr fields wit mapMongoFields option (for accessing nested fields use "." (dot) as path separator eg.: *Params.Size*)
 * Date conversion of field value to required format
+* Delta import available
 
 ## Classes
 
@@ -21,6 +22,8 @@ Welcome to the Solr MongoDB Importer project. This project provides MongoDB supp
 * **MongoEntityProcessor** - Use with the MongoDataSource to query a MongoDB collection
     * collection (**required**)
     * query (**required**)
+    * deltaQuery (*optional*)
+    * deltaImportQuery (*optional*)
 
 
 * **MongoMapperTransformer** - Map MongoDB fields to your Solr schema
@@ -88,12 +91,14 @@ Welcome to the Solr MongoDB Importer project. This project provides MongoDB supp
                query='{$where: "${dataimporter.request.clean} != false || this.lastmodified > ISODate(\"${dataimporter.last_index_time}\")"}'
                collection="products"
                datasource="MongoSource"
+               deltaQuery="{'UpdateDate':{$gt:{$date:'${dih.last_index_time}'}}}"
+               deltaImportQuery="{'_id':'${dih.delta._id}'}"
                transformer="MongoMapperTransformer"
                mapMongoFields="true">
            <!--  If mongoField name and the field declared in schema.xml are same than no need to declare below.
                If not same than you have to refer the mongoField to field in schema.xml
               ( Ex: mongoField="EmpNumber" to name="EmployeeNumber"). -->
-          <field column="_id" name="id"/>
+          <field column="_id" name="id" hashObjectId="true"/> <!-- docId has long type-->
           <field column="name" name="name" mongoField="name"/>
           <field column="size" name="size" mongoField="attrib.size"/>
           <field column="created" name="created" mongoField="created" dateFormat="yyyy-MM-dd HH:mm:ss"/>
