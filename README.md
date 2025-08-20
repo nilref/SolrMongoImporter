@@ -1,10 +1,13 @@
 # Solr MongoDB Importer
+
 Welcome to the Solr MongoDB Importer project. This project provides MongoDB support for the Solr Data Import Handler.
 
 ## Features
+
 * Retrive data from a MongoDB collection
 * Authenticate using MongoDB authentication
-* Map Mongo fields to Solr fields wit mapMongoFields option (for accessing nested fields use "." (dot) as path separator eg.: *Params.Size*)
+* Map Mongo fields to Solr fields wit mapMongoFields option (for accessing nested fields use "." (dot) as path separator
+  eg.: *Params.Size*)
 * Date conversion of field value to required format
 * Delta import available
 
@@ -31,6 +34,7 @@ Welcome to the Solr MongoDB Importer project. This project provides MongoDB supp
     * dateFormat (*optional*)
 
 ## Installation
+
 1. Build your own Jar using Maven pom.xml
 
 2. You will also need the below libs placed inside Solr core/collection1/lib folder:
@@ -80,7 +84,7 @@ Welcome to the Solr MongoDB Importer project. This project provides MongoDB supp
 
 8. Create a data-config.xml file in the path collection1\conf\ (which by default holds solrconfig.xml and schema.xml)
 
-    Here is a sample data-config.xml showing the use of all components
+   Here is a sample data-config.xml showing the use of all components
     ```xml
     <?xml version="1.0" encoding="UTF-8" ?>
     <dataConfig>
@@ -111,11 +115,13 @@ Welcome to the Solr MongoDB Importer project. This project provides MongoDB supp
 
 ##Usage
 To run full-import ( Deletes all data in index and does a Fresh full import)
+
 ```
 http://localhost:8983/solr/collection1/dataimport?command=full-import&clean=true&indent=true&wt=json
 ```
 
-To run delta import( Imports only the modified data(based on the query) and deletes the data(based on $deleteDocById & $skipDoc in data-config.xml) )
+To run delta import( Imports only the modified data )
+
 ```
-http://localhost:8983/solr/collection1/dataimport?command=full-import&clean=false&indent=true&wt=json
+http://localhost:8983/solr/collection1/dataimport?command=delta-import&clean=false&indent=true&wt=json
 ```

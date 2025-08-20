@@ -6,7 +6,7 @@
     <groupId>com.jabong.discovery</groupId>
     <artifactId>SolrMongoImporter</artifactId>
     <name>MongoDB Data Importer for Solr</name>
-    <version>0.1</version>
+    <version>1.1</version>
     <url>https://github.com/jbonch/SolrMongoImporter</url>
     <properties>
         <solr.version>5.5.0</solr.version>
@@ -14,10 +14,15 @@
     <dependencies>
         <dependency>
             <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>3.12.14</version>
-<!--            <version>3.2.2</version>-->
+            <artifactId>mongodb-driver-sync</artifactId>
+            <version>4.6.1</version>
         </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.mongodb</groupId>-->
+        <!--            <artifactId>mongo-java-driver</artifactId>-->
+        <!--            <version>3.12.14</version>-->
+        <!--&lt;!&ndash;            <version>3.2.2</version>&ndash;&gt;-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.apache.solr</groupId>
             <artifactId>solr-dataimporthandler</artifactId>
@@ -59,7 +64,7 @@
                 </executions>
                 <configuration>
                     <finalName>solr-mongo-importer-${project.version}</finalName>
-<!--                    <version>3.3.4</version>-->
+                    <!--                    <version>3.3.4</version>-->
                     <includes>
                         <include>org/**</include>
                     </includes>
@@ -69,8 +74,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.3</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <encoding>utf-8</encoding>
                 </configuration>
             </plugin>
