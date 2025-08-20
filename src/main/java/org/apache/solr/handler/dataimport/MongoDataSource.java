@@ -11,6 +11,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.util.JSON;
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -199,6 +200,8 @@ public class MongoDataSource extends DataSource<Iterator<Map<String, Object>>> {
 				}
 			}else if(object instanceof Document){
 				response = JSON.parse(((Document) object).toJson());
+			}else if(object instanceof ObjectId){
+				response = object.toString();
 			}else{
 				response = object;
 			}
